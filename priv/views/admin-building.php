@@ -19,7 +19,7 @@
                             <h3 class="card-title"><?php echo $objBuildingInfo['filter_code'] .' ' . $classroom['name']; ?></h3>
                             <div class="d-flex justify-content-end mt-3">
                                 <a href="#" class="btn btn-primary mr-2"><i class="fas fa-pencil-alt"></i> Update</a>
-                                <a href="#" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
+                                <a href="#" name="delete-classroom" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</a>
                             </div>
 
                         </div>
@@ -34,4 +34,15 @@
     </div>
 
 </div>
+
+<?php 
+
+if(isset($_GET['delete-classroom'])){
+    echo 'delete classroom';
+}
+
+function deleteClassroom($intClassroomId){
+    $objDatabaseConnection = new DatabaseConnection();
+    $objDatabaseConnection->deleteData('classrooms', 'id', $intClassroomId);
+}
 

@@ -79,6 +79,30 @@ class DatabaseConnection
         $this->objConnection = null;
     }
 
+    /**
+     * deleteData
+     * Takes a table name, a column name (the name of the column containing the id of the item being deleted) and the item id and removes
+     * that row from the database.
+     *
+     * @param $tableName
+     * @param $column
+     * @param $itemId
+     * @return void
+     */
+    public function deleteData($tableName, $column, $itemId){
+
+        try{
+            $this->setConnection();
+            $sql = 'DELETE FROM ' . $tableName . ' WHERE ' . $column . ' = ' . $itemId;
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute();
+            $this->conn = null;
+        } catch (PDOException $e) {
+
+            die("Error: " . $e->getMessage());
+        }
+    }
+
     private function setValueString($arrCols){
         $strValuesTemplate = str_repeat('?,', sizeof($arrCols) - 1);
         $strValuesTemplate .= '?';

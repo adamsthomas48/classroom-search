@@ -13,7 +13,7 @@ if($params["add_building"]){
     include 'priv/views/add-building.php';
 }
 else if($params["add_classroom"]){
-    echo "Building ID: " . $params["add_classroom"];
+    
     include 'priv/views/add-classroom.php';
 }
 else if($params["building_id"]){
@@ -24,3 +24,4 @@ else if($params["building_id"]){
     $arrBuildings = $objSearch->getAllBuildings();
     include 'priv/views/admin.php';
 }
+
